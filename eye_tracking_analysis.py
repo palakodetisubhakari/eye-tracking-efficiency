@@ -51,7 +51,7 @@ def generate_pdf_report(worker_id, metrics, output_path):
     pdf.cell(0, 10, f"Total Fixation Duration: {metrics['Total Fixation Duration']} ms", ln=True)
     pdf.cell(0, 10, f"Avg Fixation Duration: {metrics['Avg Fixation Duration']} ms", ln=True)
     pdf.cell(0, 10, f"Time to First Fixation: {metrics['Time to First Fixation']} ms", ln=True)
-    pdf.cell(0, 10, f"Efficiency Score: {metrics['Efficiency Score']}/100 – ✅ {classify_performance(metrics['Efficiency Score'])}", ln=True)
+   pdf.cell(0, 10, f"Efficiency Score: {metrics['Efficiency Score']}/100 - {classify_performance(metrics['Efficiency Score'])}", ln=True)
     pdf.ln(10)
     pdf.multi_cell(0, 10, "📝 Notes:\nEfficiency calculated from total gaze data without AOI-specific metrics.")
     pdf.output(output_path)
