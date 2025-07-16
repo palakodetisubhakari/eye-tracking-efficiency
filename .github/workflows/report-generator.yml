@@ -1,0 +1,36 @@
+name: Generate Eye Tracking Reports
+
+on:
+  push:
+    paths:
+      - 'data/**/*.csv'
+      - 'eye_tracking_analysis.py'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Report Generator
+        run: |
+          mkdir -p reports
+          python eye_tracking_analysis.py
+
+      - name: Upload Generated Reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: eye-tracking-reports
+          path: reports/
